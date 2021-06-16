@@ -32,11 +32,11 @@ if CLIENT then
 		view.fov = 0
 		view.drawviewer = false
 	hook.Add("PreDrawTranslucentRenderables", "StormFox2.util.EyeHack", function() EyePos() end)
-	hook.Add("PreRender","StormFox2.util.EyeFix",function()
-		view.pos = LocalPlayer():EyePos()
-		view.ang = LocalPlayer():EyeAngles()
-		view.fov = LocalPlayer():GetFOV()
-		view.drawviewer = LocalPlayer():ShouldDrawLocalPlayer()
+	hook.Add("CalcView","StormFox2.util.EyeFix",function(ply, origin, angles, fov)
+		view.pos = origin
+		view.ang = angles
+		view.fov = fov
+		view.drawviewer = ply:ShouldDrawLocalPlayer()
 	end)
 	--[[<Client>-----------------------------------------------------------------
 	Returns the last calcview result.
