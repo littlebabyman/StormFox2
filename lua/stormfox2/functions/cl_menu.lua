@@ -265,6 +265,7 @@ local tabs = {
 		local fog = board:AddSetting("enable_fog")
 		board:AddSetting("extra_darkness")
 		board:AddSetting("extra_darkness_amount")
+		board:AddSetting("enable_breath")
 		board:AddTitle(language.GetPhrase("#footprints"))
 		board:AddSetting("footprint_enabled")
 		board:AddSetting("footprint_playeronly")
@@ -280,7 +281,9 @@ local tabs = {
 		end,fog)
 	end},
 	[3] = {"Misc","#misc",(Material("stormfox2/hud/menu/other.png"))},
-	[4] = {"DLC","DLC",(Material("stormfox2/hud/menu/dlc.png"))}
+	[4] = {"DLC","DLC",(Material("stormfox2/hud/menu/dlc.png")), function(board)
+		hook.Run("stormfox2.menu.dlc", board)
+	end}
 }
 
 function StormFox2.Menu.Open()

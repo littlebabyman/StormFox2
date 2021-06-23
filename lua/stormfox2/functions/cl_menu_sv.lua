@@ -337,6 +337,7 @@ local tabs = {
 	[2] = {"Time","#time",(Material("stormfox2/hud/menu/clock.png")),function(board)
 		board:AddTitle("#time")
 		board:AddSetting("real_time")
+		board:AddSetting("random_time")
 		board:AddSetting("start_time")
 		board:AddSetting("time_speed")
 		board:AddTitle("#sun")
@@ -619,7 +620,9 @@ local tabs = {
 		end
 		paste:SetText( StormFox2.Setting.GetCVS() )
 	end},
-	[6] = {"DLC","DLC",(Material("stormfox2/hud/menu/dlc.png"))},
+	[6] = {"DLC","DLC",(Material("stormfox2/hud/menu/dlc.png")), function(board)
+		hook.Run("stormfox2.svmenu.dlc", board)
+	end},
 	[7] = {"Changelog", niceName(language.GetPhrase("#changelog")),(Material("stormfox2/hud/menu/other.png")),function(board)
 		local p = vgui.Create("DHTML", board)
 		board.PerformLayout = function(self,w,h)
